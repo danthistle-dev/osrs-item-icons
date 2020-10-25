@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useItems } from "./hooks/useItems"
+import Item from "./components/item"
 
 function App() {
+  const { items, isLoading, isError } = useItems(1, 25)
+
+  if (isLoading) return <div>Loading...</div>
+  if (isError) return <div>Error!</div>
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {items._items.map((item: { icon: string; name: string; }) => (
+        <Item icon={item.icon} name={item.name} />
+      ))}
     </div>
   );
 }
