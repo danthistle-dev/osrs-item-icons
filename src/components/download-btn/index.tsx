@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import s from "./download-btn.module.css"
 
 interface Props {
   iconCount: number
@@ -7,7 +8,9 @@ interface Props {
 const Download: React.FC<Props> = ({ iconCount }) => {
 
   return(
-    <button>Download {iconCount} icons</button>
+    <button className={s.container + ` ui primary ${iconCount === 0 ? "disabled" : ""} button`}>
+      {iconCount === 0 ? "Select at least one icon" : `Download ${iconCount} icon(s)`}
+    </button>
   )
 }
 

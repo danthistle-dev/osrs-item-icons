@@ -3,12 +3,13 @@
 }
 
 .item {
-  width: 50px;
-  height: 50px;
-  background-color:hsl(34,20%,20%); 
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color:hsl(34,20%,20%); 
   border-radius: 8px;
 }
 
@@ -23,4 +24,11 @@
 .item:hover {
   background-color:hsl(34,20%,30%);
   cursor: pointer;
+}
+
+.check {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  color: hsl(62,100%,60%);
 }
