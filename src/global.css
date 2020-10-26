@@ -1,0 +1,10 @@
+@import "../node_modules/normalize.css/normalize.css";
+
+html, body {
+  min-height: 100vh;
+  background-color: hsl(190,92%,80%);
+}
+
+h1 {
+  margin: 0;
+}
