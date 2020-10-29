@@ -7,7 +7,7 @@ function App() {
   
   return (
     <div>
-      <h1 style={{ textAlign: "center", margin: "50px 0" }}>OSRS Item Icon Downloader</h1>
+      <h1 style={{ color: "white", textAlign: "center", margin: "50px 0" }}>OSRS Item Icon Downloader</h1>
       <ItemContainer />
     </div>
   );
