@@ -32,13 +32,15 @@ const Search: React.FC<Props> = ({ select, deselect }) => {
 
   return (
     <div className={s.container}>
-      <div className={`ui action input ${loading ? "disabled" : ""}`}>
-        <input value={search} type="text" placeholder="Search..." onChange={e => setSearch(e.target.value)} />
-        <button className={`ui icon ${loading ? "loading" : ""} button`} onClick={() => getSearch(search)}>
-          <i className="search icon"></i>
-        </button>
+      <div className={s.search}>
+        <div style={{ marginLeft: "5px", marginBottom: "5px" }} className={`ui action input ${loading ? "disabled" : ""}`}>
+          <input value={search} type="text" placeholder="Search..." onChange={e => setSearch(e.target.value)} />
+          <button className={`ui icon ${loading ? "loading" : ""} button`} onClick={() => getSearch(search)}>
+            <i className="search icon"></i>
+          </button>
+        </div>
+        <div style={{ marginLeft: "10px", color: "white" }}>You must enter the exact name of the item. OSRS items always start with a capital letter.</div>
       </div>
-      <span style={{ marginLeft: "10px", color: "white" }}>You must enter the exact name of the item. OSRS items always start with a capital letter.</span>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {items.map((item: { icon: string, name: string }, i) => (
           <Item key={i} icon={item.icon} name={item.name} select={select} deselect={deselect} />

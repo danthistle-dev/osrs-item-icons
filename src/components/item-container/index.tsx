@@ -47,7 +47,7 @@ const ItemContainer: React.FC = () => {
 
   const downloadZip = () => {
     var zip = new JSZip()
-    zip.file("READ_ME.txt", "test\n")
+    zip.file("READ_ME.txt", "This web app has no affiliation with Old School Runescape or JAGEX.\nThe logo and icons are copyright Jagex Ltd.\n")
     selected.map(item => {
       zip.file(`${item.name}.png`, item.icon, { base64: true })
     })
@@ -70,7 +70,9 @@ const ItemContainer: React.FC = () => {
         className={`ui primary ${loading ? "loading disabled" : ""} button`} 
         onClick={() => {
           setPage(page + 1)
-        }}>Load more</button>
+        }}>
+          Load more
+        </button>
       <Download downloadZip={downloadZip} iconCount={selected.length} />
     </>
   )
