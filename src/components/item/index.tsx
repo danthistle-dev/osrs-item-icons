@@ -13,7 +13,7 @@ const Icon: React.FC<Props> = ({ icon, name, select, deselect }) => {
 
   const onSelect = () => {
     toggleSelect(!selected)
-    selected ? deselect(icon) : select(icon)
+    selected ? deselect(icon) : select(icon, name)
   }
 
   return(

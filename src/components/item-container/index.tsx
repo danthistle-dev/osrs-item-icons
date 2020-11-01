@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import JSZip from "jszip"
+import { saveAs } from "file-saver"
 import Item from "../item"
 import Download from "../download-btn"
 import s from "./item-container.module.css"
 
+type item = {
+  icon: string,
+  name: string
+}
+
 const ItemContainer: React.FC = () => {
-  const [selected, onSelect] = useState<string[]>([])
+  const [selected, onSelect] = useState<item[]>([])
   const [page, setPage] = useState<number>(1)
   const [items, setItems] = useState<any[]>([])
   const [error, setError] = useState<object>()
@@ -28,17 +35,25 @@ const ItemContainer: React.FC = () => {
     getResults(page)
   }, [])
 
-  console.log(items)
-
-  const selectItem = (icon: string) => {
-    onSelect([...selected, icon])
-    console.log(selected)
+  const selectItem = (icon: string, name: string) => {
+    onSelect([...selected, { icon, name }])
   }
 
   const deselectItem = (icon: string) => {
-    let newArray = selected.filter(x => x !== icon)
+    let newArray = selected.filter((x: item) => x.icon !== icon)
     onSelect(newArray)
-    console.log(selected)
+  }
+
+  const downloadZip = () => {
+    var zip = new JSZip()
+    zip.file("READ_ME.txt", "test\n")
+    selected.map(item => {
+      zip.file(`${item.name}.png`, item.icon, { base64: true })
+    })
+    zip.generateAsync({type: "blob"})
+      .then((content) => {
+        saveAs(content, "icons.zip")
+      })
   }
 
   return (
@@ -52,7 +67,7 @@ const ItemContainer: React.FC = () => {
         setPage(page + 1)
         getResults(page)
       }}>Load more</button>
-      <Download iconCount={selected.length} />
+      <Download downloadZip={downloadZip} iconCount={selected.length} />
     </>
   )
 }
