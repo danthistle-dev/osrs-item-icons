@@ -1,14 +1,8 @@
 @import "../node_modules/normalize.css/normalize.css";
 
-@font-face {
-  font-family: "runescape_uf";
-  src: url("./runescape_uf.ttf");
-}
-
 html, body {
   min-height: 100vh;
   background-color: darkslategray;
-  /* font-family: "runescape_uf"; */
 }
 
 h1 {
