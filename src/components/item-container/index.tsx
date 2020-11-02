@@ -48,9 +48,9 @@ const ItemContainer: React.FC = () => {
   const downloadZip = () => {
     var zip = new JSZip()
     zip.file("READ_ME.txt", "This web app has no affiliation with Old School Runescape or JAGEX.\nThe logo and icons are copyright Jagex Ltd.\n")
-    selected.map(item => {
+    selected.map(item => (
       zip.file(`${item.name}.png`, item.icon, { base64: true })
-    })
+    ))
     zip.generateAsync({type: "blob"})
       .then((content) => {
         saveAs(content, "icons.zip")

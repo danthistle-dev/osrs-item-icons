@@ -21,14 +21,11 @@ const Search: React.FC<Props> = ({ select, deselect }) => {
       const res = await axios.get(`https://api.osrsbox.com/items?where={ "name": "${search}", "duplicate": false }`)
       setItems([...items, ...res.data._items])
       setLoading(false)
-      console.log(items)
     } catch (error) {
       setLoading(false)
       toast.error("An error occurred while fetching your search, please try again.")
     }
   }
-
-  console.log(items)
 
   return (
     <div className={s.container}>
